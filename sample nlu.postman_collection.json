@@ -1736,6 +1736,9 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"utterance_id\", jsonData.utterances[0].id);",
+							"",
 							"",
 							"",
 							"pm.globals.set(\"variable_key\", \"variable_value\");",
@@ -1858,7 +1861,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.status(201);",
 							"});",
 							"",
 							"pm.test(\"Response time is less than 200ms\", function () {",
@@ -1885,7 +1888,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"entity_name\": \"reason\",\n    \"is_tagged\": true,\n    \"entity_category\": \"regex\",\n    \"entity_value\":\"[a-z]\",\n    \"entity_type\": \"BT.NONE\",\n    \"associated_intents\": [\n        \"723c9ef0-b02e-4660-bfa9-0430ae5290ad\"  \n    ],\n    \"utterances\": [\n        {\n            \"utterance\": \"please apply house loan for 70 lakhs\",\n            \"entities\": [\n                {\n                    \"start\": 39,\n                    \"end\": 43,\n                    \"value\": \"70 lakhs\",\n                    \"entity\": \"loan_amount\"\n                }\n            ]\n        }\n    ]\n}",
+					"raw": "{\n    \"entity_name\": \"reason\",\n    \"is_tagged\": true,\n    \"entity_category\": \"regex\",\n    \"entity_value\":\"[a-z]\",\n    \"entity_type\": \"BT.NONE\",\n    \"associated_intents\": [\n        \"{{intent_id}}\"\n    ],\n    \"utterances\": [\n        {\n            \"utterance\": \"I will make deposit for 70 lakhs\",\n            \"entities\": [\n                {\n                    \"start\": 39,\n                    \"end\": 43,\n                    \"value\": \"70 lakhs\",\n                    \"entity\": \"deposit\"\n                }\n            ]\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
